@@ -1,0 +1,726 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>GOZEE — Stay. Enjoy. We'll Deliver.</title>
+
+    <!-- Menghubungkan file CSS -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <!-- NAVIGATION -->
+    <header>
+      <div class="logo" onclick="goToHome()" style="cursor: pointer">
+        gozee<span>.</span>
+      </div>
+
+      <nav>
+        <a
+          href="#"
+          onclick="
+            goToHome();
+            return false;
+          "
+          >Home</a
+        >
+        <a
+          href="#upcoming-events"
+          onclick="
+            goToEvents();
+            return false;
+          "
+          >Events</a
+        >
+        <a
+          href="#about"
+          onclick="
+            goToAbout();
+            return false;
+          "
+          >About</a
+        >
+
+        <div class="nav-dropdown">
+          <button class="nav-button" onclick="toggleDashboardMenu()">
+            Dashboard ↓
+          </button>
+
+          <div class="dropdown-content" id="dashboard-menu" hidden>
+            <button onclick="openTenantDashboard()">Tenant Dashboard</button>
+            <button onclick="openOperationsDashboard()">
+              Operations Dashboard
+            </button>
+            <button onclick="openEventOrganizerDashboard()">
+              Event Organizer Dashboard
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="hero">
+      <div class="hero-label">Your Event, Made Easier.</div>
+
+      <h1>
+        Stay. Enjoy.<br />
+        We'll <span>Deliver.</span>
+      </h1>
+
+      <p>
+        Enjoy every moment of your event without worrying about leaving your
+        spot. Whatever you need, GOZEE brings it to you.
+      </p>
+
+      <a
+        href="#upcoming-events"
+        class="hero-button"
+        onclick="
+          exploreEvents();
+          return false;
+        "
+      >
+        Explore Events →
+      </a>
+    </section>
+
+    <!-- EVENT SECTION -->
+    <section class="events" id="events">
+      <div class="events-heading">
+        <div>
+          <p class="section-label">DISCOVER WITH GOZEE</p>
+          <h2>Find your next<br />event experience.</h2>
+        </div>
+
+        <a
+          href="#upcoming-events"
+          class="view-all"
+          onclick="
+            exploreEvents();
+            return false;
+          "
+        >
+          View all events ↗
+        </a>
+      </div>
+
+      <div class="event-grid">
+        <div class="event-card">
+          <div class="event-number">01 / MUSIC</div>
+          <h3>Music & Concert</h3>
+          <p>Enjoy the music. We'll handle the rest.</p>
+          <span>Explore category ↗</span>
+        </div>
+
+        <div class="event-card">
+          <div class="event-number">02 / CULINARY</div>
+          <h3>Food Festival</h3>
+          <p>Discover flavors without leaving your spot.</p>
+          <span>Explore category ↗</span>
+        </div>
+
+        <div class="event-card">
+          <div class="event-number">03 / EXHIBITION</div>
+          <h3>Exhibitions</h3>
+          <p>Explore more while staying comfortable.</p>
+          <span>Explore category ↗</span>
+        </div>
+
+        <div class="event-card">
+          <div class="event-number">04 / LIFESTYLE</div>
+          <h3>Community & Lifestyle</h3>
+          <p>Make every event moment count.</p>
+          <span>Explore category ↗</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- UPCOMING EVENTS -->
+    <section class="upcoming-events" id="upcoming-events">
+      <div class="events-top">
+        <div>
+          <p class="section-label">EXPERIENCE WITH GOZEE</p>
+          <h2>Events worth<br />staying for.</h2>
+        </div>
+        <p class="events-description">
+          Find an event, explore the tenants, and let GOZEE take care of your
+          needs.
+        </p>
+      </div>
+
+      <div class="upcoming-grid">
+        <article class="upcoming-card">
+          <div class="event-visual music">
+            <span>GOZEE EVENT / 001</span>
+            <strong>MUSIC<br />ALL NIGHT.</strong>
+          </div>
+          <div class="upcoming-info">
+            <p>MUSIC FESTIVAL · MALANG</p>
+            <h3>Malang Music Festival</h3>
+            <p>Live music, great vibes, and unforgettable moments.</p>
+            <button onclick="showEvent('music')">Explore event ↗</button>
+          </div>
+        </article>
+
+        <article class="upcoming-card">
+          <div class="event-visual food">
+            <span>GOZEE EVENT / 002</span>
+            <strong>GOOD FOOD.<br />GOOD MOOD.</strong>
+          </div>
+          <div class="upcoming-info">
+            <p>CULINARY FESTIVAL · MALANG</p>
+            <h3>Local Food Market</h3>
+            <p>Discover local flavors from your favorite tenants.</p>
+            <button onclick="showEvent('food')">Explore event ↗</button>
+          </div>
+        </article>
+
+        <article class="upcoming-card">
+          <div class="event-visual auto">
+            <span>GOZEE EVENT / 003</span>
+            <strong>DRIVE<br />THE EXPERIENCE.</strong>
+          </div>
+          <div class="upcoming-info">
+            <p>AUTOMOTIVE EXHIBITION · MALANG</p>
+            <h3>Auto & Lifestyle Expo</h3>
+            <p>Explore automotive culture and lifestyle experiences.</p>
+            <button onclick="showEvent('auto')">Explore event ↗</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- EVENT DETAIL -->
+    <section class="event-detail" id="event-detail" hidden>
+      <button class="back-button" onclick="closeEvent()">
+        ← Back to events
+      </button>
+
+      <p class="section-label">EVENT INFORMATION</p>
+
+      <h2 id="detail-title">Event Name</h2>
+      <p id="detail-description"></p>
+
+      <div class="detail-meta">
+        <span id="detail-category"></span>
+        <span id="detail-location"></span>
+      </div>
+
+      <h3>Participating tenants</h3>
+
+      <div id="tenant-list" class="tenant-list"></div>
+    </section>
+
+    <!-- TENANT PRODUCT SECTION -->
+    <section class="tenant-products" id="tenant-products" hidden>
+      <button class="back-button" onclick="backToEventDetail()">
+        ← Back to tenants
+      </button>
+
+      <div
+        class="product-notification"
+        id="product-notification"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+        hidden
+      >
+        <span class="product-notification-icon" aria-hidden="true"></span>
+        <span class="product-notification-content">
+          <strong class="product-notification-title"></strong>
+          <span class="product-notification-message"></span>
+        </span>
+      </div>
+
+      <p class="section-label">EXPLORE TENANT</p>
+
+      <h2 id="tenant-title">Tenant Name</h2>
+
+      <p id="tenant-description">
+        Explore available products from this tenant.
+      </p>
+
+      <div class="product-grid" id="product-grid"></div>
+      <button class="checkout-button" onclick="showCart()">
+        View Shopping Cart →
+      </button>
+    </section>
+
+    <!-- SHOPPING CART -->
+    <section class="shopping-cart" id="shopping-cart" hidden>
+      <button class="back-button" onclick="backToProducts()">
+        ← Back to products
+      </button>
+
+      <p class="section-label">YOUR ORDER</p>
+
+      <h2>Shopping Cart</h2>
+      <p>Review your selected items before checkout.</p>
+
+      <div id="cart-items" class="cart-items"></div>
+
+      <div class="cart-summary">
+        <div>
+          <span>Subtotal</span>
+          <strong id="cart-subtotal">Rp 0</strong>
+        </div>
+
+        <div>
+          <span>Service Fee (10%)</span>
+          <strong id="cart-fee">Rp 0</strong>
+        </div>
+
+        <div class="cart-total">
+          <span>Total</span>
+          <strong id="cart-total">Rp 0</strong>
+        </div>
+
+        <button class="checkout-button" onclick="goToCheckout()">
+          Continue to Checkout →
+        </button>
+      </div>
+    </section>
+
+    <!-- CHECKOUT PAGE -->
+    <section class="checkout-page" id="checkout-page" hidden>
+      <button class="back-button" onclick="backToCart()">← Back to cart</button>
+
+      <p class="section-label">COMPLETE YOUR ORDER</p>
+      <h2>Almost there.</h2>
+      <p>Just a few details before your order is on its way.</p>
+
+      <div class="checkout-layout">
+        <!-- DELIVERY INFORMATION -->
+        <div class="checkout-form">
+          <h3>Delivery Information</h3>
+
+          <label for="customer-name">Full Name</label>
+          <input type="text" id="customer-name" placeholder="Enter your name" />
+
+          <label for="customer-contact">Phone Number</label>
+          <input type="tel" id="customer-contact" placeholder="08xxxxxxxxxx" />
+
+          <label for="delivery-location">Delivery Location</label>
+          <input
+            type="text"
+            id="delivery-location"
+            placeholder="Example: Main Stage, Zone A"
+          />
+
+          <label for="delivery-notes">Additional Notes</label>
+          <textarea
+            id="delivery-notes"
+            placeholder="Any special delivery instructions?"
+          ></textarea>
+
+          <h3>Payment Method</h3>
+
+          <label class="payment-option">
+            <input type="radio" name="payment-method" value="QRIS" checked />
+            QRIS (Simulation)
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment-method" value="E-Wallet" />
+            E-Wallet (Simulation)
+          </label>
+
+          <label class="payment-option">
+            <input type="radio" name="payment-method" value="Virtual Account" />
+            Virtual Account (Simulation)
+          </label>
+        </div>
+
+        <!-- ORDER SUMMARY -->
+        <div class="checkout-summary">
+          <h3>Order Summary</h3>
+
+          <div id="checkout-items"></div>
+
+          <div class="summary-line">
+            <span>Subtotal</span>
+            <strong id="checkout-subtotal">Rp 0</strong>
+          </div>
+
+          <div class="summary-line">
+            <span>Service Fee (10%)</span>
+            <strong id="checkout-fee">Rp 0</strong>
+          </div>
+
+          <div class="summary-line checkout-grand-total">
+            <span>Total Payment</span>
+            <strong id="checkout-total">Rp 0</strong>
+          </div>
+
+          <button class="pay-button" onclick="processPayment()">
+            Pay Now →
+          </button>
+
+          <p class="simulation-note">
+            Demo only. No real payment will be processed.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- PAYMENT SUCCESS -->
+    <section class="payment-success" id="payment-success" hidden>
+      <div class="success-icon">✓</div>
+
+      <p class="section-label">PAYMENT CONFIRMED</p>
+
+      <h2>You're all set!</h2>
+
+      <p>Your order has been successfully placed.</p>
+
+      <div class="order-confirmation">
+        <p>Order Number</p>
+        <h3 id="order-number">GZ-000001</h3>
+
+        <p>Total Payment</p>
+        <h3 id="success-total">Rp 0</h3>
+
+        <p>Payment Method</p>
+        <strong id="success-method">QRIS</strong>
+      </div>
+
+      <p class="simulation-note">
+        This is a simulated transaction for the GOZEE prototype.
+      </p>
+
+      <button class="checkout-button" onclick="finishOrder()">
+        Track My Order →
+      </button>
+    </section>
+
+    <!-- ORDER TRACKING -->
+    <section class="tracking-page" id="tracking-page" hidden>
+      <p class="section-label">YOUR GOZEE ORDER</p>
+
+      <h2>Track Your Order</h2>
+
+      <div class="tracking-card">
+        <p>Order Number</p>
+        <h3 id="tracking-order-number">GZ-000001</h3>
+
+        <p>Estimated delivery status</p>
+
+        <div id="tracking-status" class="tracking-status">Order Received</div>
+
+        <div class="tracking-progress">
+          <div class="tracking-step active">
+            <span>1</span>
+            <div>
+              <strong>Order Received</strong>
+              <p>Your order has been received.</p>
+            </div>
+          </div>
+
+          <div class="tracking-step">
+            <span>2</span>
+            <div>
+              <strong>Preparing Your Order</strong>
+              <p>The tenant is preparing your order.</p>
+            </div>
+          </div>
+
+          <div class="tracking-step">
+            <span>3</span>
+            <div>
+              <strong>Ready for Pickup</strong>
+              <p>Your order is ready for GOZEE crew.</p>
+            </div>
+          </div>
+
+          <div class="tracking-step">
+            <span>4</span>
+            <div>
+              <strong>On Delivery</strong>
+              <p>Your order is on its way.</p>
+            </div>
+          </div>
+
+          <div class="tracking-step">
+            <span>5</span>
+            <div>
+              <strong>Delivered</strong>
+              <p>Your order has arrived.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TENANT DASHBOARD -->
+    <section class="tenant-dashboard" id="tenant-dashboard" hidden>
+      <p class="section-label">GOZEE PARTNER AREA</p>
+      <h2>Tenant Dashboard</h2>
+      <p>Manage your incoming orders and keep your customers updated.</p>
+
+      <div class="tenant-dashboard-header">
+        <div>
+          <label for="tenant-selector">Select Your Tenant</label>
+          <select id="tenant-selector" onchange="loadTenantOrders()">
+            <option value="">Choose your tenant</option>
+            <option value="Kopi Sudut">Kopi Sudut</option>
+            <option value="Burger Lab">Burger Lab</option>
+            <option value="Slice Society">Slice Society</option>
+            <option value="Nusantara Bowl">Nusantara Bowl</option>
+            <option value="Sweet Corner">Sweet Corner</option>
+            <option value="Kopi Lokal">Kopi Lokal</option>
+            <option value="Drive Gear">Drive Gear</option>
+            <option value="Streetwear Hub">Streetwear Hub</option>
+            <option value="Fuel Station">Fuel Station</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="tenant-stats">
+        <div class="tenant-stat-card">
+          <p>Total Orders</p>
+          <h3 id="tenant-total-orders">0</h3>
+        </div>
+        <div class="tenant-stat-card">
+          <p>New Orders</p>
+          <h3 id="tenant-new-orders">0</h3>
+        </div>
+        <div class="tenant-stat-card">
+          <p>Completed Orders</p>
+          <h3 id="tenant-completed-orders">0</h3>
+        </div>
+      </div>
+
+      <h3>Incoming Orders</h3>
+      <div id="tenant-order-list" class="tenant-order-list">
+        <p>Select your tenant to view incoming orders.</p>
+      </div>
+    </section>
+
+    <!-- OPERATIONS DASHBOARD -->
+    <section class="operations-dashboard" id="operations-dashboard" hidden>
+      <p class="section-label">GOZEE OPERATIONS AREA</p>
+      <h2>Operations Dashboard</h2>
+      <p>Manage pickups, assign delivery crew, and monitor orders.</p>
+
+      <div class="operations-stats">
+        <div class="operations-stat-card">
+          <p>Ready for Pickup</p>
+          <h3 id="ops-pickup-count">0</h3>
+        </div>
+
+        <div class="operations-stat-card">
+          <p>On Delivery</p>
+          <h3 id="ops-delivery-count">0</h3>
+        </div>
+
+        <div class="operations-stat-card">
+          <p>Delivered</p>
+          <h3 id="ops-delivered-count">0</h3>
+        </div>
+      </div>
+
+      <h3>Active Orders</h3>
+
+      <div id="operations-order-list" class="operations-order-list">
+        <p>No active orders yet.</p>
+      </div>
+    </section>
+
+    <!-- EVENT ORGANIZER DASHBOARD -->
+    <section class="organizer-dashboard" id="organizer-dashboard" hidden>
+      <p class="section-label">GOZEE PARTNER AREA</p>
+      <h2>Event Organizer Dashboard</h2>
+      <p>Monitor your event performance and operational activities.</p>
+
+      <!-- EVENT SELECTION -->
+      <div class="organizer-event-selection">
+        <label for="organizer-event-selector">Select Your Event</label>
+
+        <select
+          id="organizer-event-selector"
+          onchange="loadOrganizerDashboard()"
+        >
+          <option value="">Choose an event</option>
+          <option value="music">Malang Music Festival</option>
+          <option value="food">Local Food Market</option>
+          <option value="auto">Auto & Lifestyle Expo</option>
+        </select>
+      </div>
+
+      <!-- EVENT INFORMATION -->
+      <div class="organizer-event-info">
+        <h3 id="organizer-event-name">Event Information</h3>
+        <p id="organizer-event-category">Event category will appear here.</p>
+        <p id="organizer-event-location">Event location will appear here.</p>
+      </div>
+
+      <!-- EVENT STATISTICS -->
+      <div class="organizer-stats">
+        <div class="organizer-stat-card">
+          <p>Total Orders</p>
+          <h3 id="organizer-total-orders">0</h3>
+        </div>
+
+        <div class="organizer-stat-card">
+          <p>Total Tenants</p>
+          <h3 id="organizer-total-tenants">0</h3>
+        </div>
+
+        <div class="organizer-stat-card">
+          <p>Completed Orders</p>
+          <h3 id="organizer-completed-orders">0</h3>
+        </div>
+
+        <div class="organizer-stat-card">
+          <p>Total Transaction</p>
+          <h3 id="organizer-total-transaction">Rp0</h3>
+        </div>
+      </div>
+
+      <!-- TENANT INFORMATION -->
+      <div class="organizer-section">
+        <h3>Registered Tenants</h3>
+        <div id="organizer-tenant-list">
+          <p>Select an event to view its tenants.</p>
+        </div>
+      </div>
+
+      <!-- ORDER MONITORING -->
+      <div class="organizer-section">
+        <h3>Event Orders</h3>
+        <div id="organizer-order-list">
+          <p>Select an event to view its orders.</p>
+        </div>
+      </div>
+
+      <!-- EVENT PERFORMANCE REPORT -->
+      <div class="organizer-section" id="organizer-report">
+        <h3>Event Performance Report</h3>
+        <p>Monitor order distribution and tenant performance.</p>
+
+        <!-- ORDER OVERVIEW -->
+        <h4 class="organizer-report-heading">Order Overview</h4>
+
+        <div class="organizer-report-stats">
+          <div class="organizer-report-card">
+            <p>Order Received</p>
+            <h3 id="report-order-received">0</h3>
+          </div>
+
+          <div class="organizer-report-card">
+            <p>Preparing</p>
+            <h3 id="report-preparing">0</h3>
+          </div>
+
+          <div class="organizer-report-card">
+            <p>Ready for Pickup</p>
+            <h3 id="report-ready">0</h3>
+          </div>
+
+          <div class="organizer-report-card">
+            <p>On Delivery</p>
+            <h3 id="report-delivery">0</h3>
+          </div>
+
+          <div class="organizer-report-card">
+            <p>Delivered</p>
+            <h3 id="report-delivered">0</h3>
+          </div>
+        </div>
+
+        <!-- FINANCIAL SUMMARY -->
+        <h4 class="organizer-report-heading">Financial Summary</h4>
+
+        <div class="organizer-report-stats">
+          <div class="organizer-report-card">
+            <p>Gross Merchandise Value</p>
+            <h3 id="report-gmv">Rp0</h3>
+          </div>
+
+          <div class="organizer-report-card">
+            <p>GOZEE Service Revenue</p>
+            <h3 id="report-service-revenue">Rp0</h3>
+          </div>
+
+          <div class="organizer-report-card">
+            <p>Total Transaction</p>
+            <h3 id="report-total-transaction">Rp0</h3>
+          </div>
+        </div>
+
+        <!-- TENANT PERFORMANCE -->
+        <h4 class="organizer-report-heading">Tenant Performance</h4>
+
+        <div id="organizer-tenant-performance">
+          <p>Select an event to view tenant performance.</p>
+        </div>
+
+        <!-- DOWNLOAD REPORT -->
+        <div class="organizer-report-download">
+          <div>
+            <h4>Export Event Report</h4>
+            <p>Download your event performance summary.</p>
+          </div>
+
+          <button onclick="downloadOrganizerReport()">Download Report ↓</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- INTRODUCTION -->
+    <section class="intro" id="about" aria-labelledby="about-title">
+      <div class="intro-heading">
+        <p class="section-label">ABOUT GOZEE</p>
+        <h2 id="about-title">
+          More moments.<br />
+          <span>Less interruptions.</span>
+        </h2>
+      </div>
+
+      <div class="intro-description">
+        <p>
+          GOZEE is an event ordering and delivery platform that connects you
+          with participating vendors. Browse events, choose food or essentials,
+          and have your order brought to your spot so you can stay part of the
+          moment.
+        </p>
+      </div>
+
+      <div class="intro-steps" aria-label="How GOZEE works">
+        <article class="intro-step">
+          <span>01</span>
+          <h3>Choose your event</h3>
+          <p>Explore concerts, food festivals, exhibitions, and more.</p>
+        </article>
+
+        <article class="intro-step">
+          <span>02</span>
+          <h3>Order from local vendors</h3>
+          <p>Browse participating tenants and select what you need.</p>
+        </article>
+
+        <article class="intro-step">
+          <span>03</span>
+          <h3>Enjoy. We’ll deliver.</h3>
+          <p>
+            Share your location at the event and get your order brought to you.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="logo" onclick="goToHome()" style="cursor: pointer">
+        gozee<span>.</span>
+      </div>
+
+      <p>© 2026 GOZEE. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
